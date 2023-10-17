@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/KRB-U.github.io/goit-react-hw-04-phonebook/static/css/main.cd2e038f.css",
+    "main.js": "/KRB-U.github.io/goit-react-hw-04-phonebook/static/js/main.8c8a1b0c.js",
+    "index.html": "/KRB-U.github.io/goit-react-hw-04-phonebook/index.html",
+    "main.cd2e038f.css.map": "/KRB-U.github.io/goit-react-hw-04-phonebook/static/css/main.cd2e038f.css.map",
+    "main.8c8a1b0c.js.map": "/KRB-U.github.io/goit-react-hw-04-phonebook/static/js/main.8c8a1b0c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cd2e038f.css",
+    "static/js/main.8c8a1b0c.js"
+  ]
+}

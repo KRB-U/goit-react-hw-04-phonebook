@@ -67,9 +67,9 @@ const App = () => {
   };
 
   const deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
+    setContacts(prevState =>
+      prevState.filter(contact => contact.id !== contactId)
+    );
   };
 
   const visibleContacts = getVisibleContacts();

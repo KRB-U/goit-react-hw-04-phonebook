@@ -28,9 +28,7 @@ const App = () => {
     if (parseContacts !== null) {
       setContacts(parseContacts);
     }
-  }, []);
 
-  useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 

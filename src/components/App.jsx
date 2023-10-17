@@ -10,6 +10,9 @@ import 'components/ContactForm/ContactForm';
 //STYLED
 import { TitlePhonebook, TitleContacts, ContainerWrapper } from './App.styled';
 
+// NOTIFY
+import toast, { Toaster } from 'react-hot-toast';
+
 const App = () => {
   const [contacts, setContacts] = useState(() => {
     const contactsLs = localStorage.getItem('contacts');
@@ -68,6 +71,7 @@ const App = () => {
     setContacts(prevState =>
       prevState.filter(contact => contact.id !== contactId)
     );
+    toast.success('Видалено');
   };
 
   const visibleContacts = getVisibleContacts();
@@ -86,6 +90,7 @@ const App = () => {
         arrContacts={visibleContacts}
         onDeleteContact={deleteContact}
       ></ContactList>
+      <Toaster></Toaster>
     </ContainerWrapper>
   );
 };

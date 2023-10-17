@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import { nanoid } from 'nanoid';
+
 import {
   FormContainer,
   LabelInputName,
@@ -7,7 +10,9 @@ import {
   InputPhone,
   Button,
 } from './ContactForm.styled';
-import { useState } from 'react';
+
+// NOTIFY
+import toast from 'react-hot-toast';
 
 const ContactForm = ({ formDataToApp }) => {
   const [name, setName] = useState('');
@@ -45,7 +50,7 @@ const ContactForm = ({ formDataToApp }) => {
     evt.preventDefault();
 
     formDataToApp({ name, number });
-
+    toast.success('Додано');
     reset();
   };
 

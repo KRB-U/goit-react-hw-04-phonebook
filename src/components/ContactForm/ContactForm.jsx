@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import {
   FormContainer,
@@ -8,72 +7,79 @@ import {
   InputPhone,
   Button,
 } from './ContactForm.styled';
+import { useState } from 'react';
 
-class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
+const ContactForm = ({ formDataToApp }) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const formNameUniqueKey = nanoid(10);
+  const formNumberUniqueKey = nanoid(7);
+
+  const reset = () => {
+    setName('');
+    setNumber('');
   };
 
-  formNameUniqueKey = nanoid(10);
-  formNumberUniqueKey = nanoid(7);
-
-  reset = () => {
-    this.setState({ name: '', number: '' });
-  };
-
-  handleChange = evt => {
+  const handleChange = evt => {
     const { name, value } = evt.target;
 
-    this.setState({
-      [name]: value,
-    });
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+
+      default:
+        return;
+    }
+
+    // this.setState({
+    //   [name]: value,
+    // });
   };
 
-  handleSubmit = evt => {
+  const handleSubmit = evt => {
     evt.preventDefault();
 
-    const { name, number } = this.state;
+    formDataToApp({ name, number });
 
-    this.props.formDataToApp({ name, number });
-    this.reset();
-
-    // this.setState({ name: '', number: '' });
+    reset();
   };
 
-  render() {
-    return (
-      <FormContainer>
-        <form onSubmit={this.handleSubmit}>
-          <LabelInputName htmlFor={this.formNameUniqueKey}>
-            Name
-            <InputName
-              type="text"
-              name="name"
-              required
-              value={this.state.name}
-              onChange={this.handleChange}
-              id={this.formNameUniqueKey}
-            />
-          </LabelInputName>
+  return (
+    <FormContainer>
+      <form onSubmit={handleSubmit}>
+        <LabelInputName htmlFor={formNameUniqueKey}>
+          Name
+          <InputName
+            type="text"
+            name="name"
+            required
+            value={name}
+            onChange={handleChange}
+            id={formNameUniqueKey}
+          />
+        </LabelInputName>
 
-          <LabelInputPhone htmlFor={this.formNumberUniqueKey}>
-            Number
-            <InputPhone
-              type="tel"
-              name="number"
-              required
-              value={this.state.number}
-              onChange={this.handleChange}
-              id={this.formNumberUniqueKey}
-            />
-          </LabelInputPhone>
+        <LabelInputPhone htmlFor={formNumberUniqueKey}>
+          Number
+          <InputPhone
+            type="tel"
+            name="number"
+            required
+            value={number}
+            onChange={handleChange}
+            id={formNumberUniqueKey}
+          />
+        </LabelInputPhone>
 
-          <Button type="submit">Add contact</Button>
-        </form>
-      </FormContainer>
-    );
-  }
-}
+        <Button type="submit">Add contact</Button>
+      </form>
+    </FormContainer>
+  );
+};
 
 export { ContactForm };

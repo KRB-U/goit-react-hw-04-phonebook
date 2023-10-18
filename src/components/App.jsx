@@ -12,23 +12,20 @@ import { TitlePhonebook, TitleContacts, ContainerWrapper } from './App.styled';
 
 // NOTIFY
 import toast, { Toaster } from 'react-hot-toast';
+import contactsData from '../jsonData/contactsData.json';
 
 const App = () => {
-  const [contacts, setContacts] = useState(() => {
+  const savedContacts = () => {
     const contactsLs = localStorage.getItem('contacts');
-    const parseContacts = JSON.parse(contactsLs);
 
-    return (
-      parseContacts || [
-        { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-        { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-        { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-        { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-        { id: 'id-6', name: 'Emma Thompson', number: '987-65-43' },
-        { id: 'id-7', name: 'Oliver Davis', number: '876-54-32' },
-      ]
-    );
-  });
+    if (contactsLs !== null) {
+      return JSON.parse(contactsLs);
+    }
+
+    return contactsData;
+  };
+
+  const [contacts, setContacts] = useState(savedContacts);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
